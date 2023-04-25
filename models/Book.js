@@ -11,4 +11,4 @@ const bookScheme = new mongoose.Schema({
     }
 
 }, { timestamps: true})
-module.exports = mongoose.model('Books', bookScheme)
+module.exports = mongoose.model('Book', bookScheme)
