@@ -5,6 +5,12 @@ const reviewScheme = new mongoose.Schema({
         type:String,
         required:true,
         minLength:10
+    },
+
+    //for user id on review
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'                          //name should match with model name 
     }
 })
 

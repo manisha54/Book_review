@@ -3,7 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 
 const books_routes = require('./routes/book-routes')
-
+const user_routes  =require('./routes/user_routes')
 const port = process.env.PORT
 
 
@@ -21,6 +21,9 @@ const app = express()  //initiate  express by giving name app
 app.use(express.json())   //request pass through this
 
 
+
+
+
 app.get('/', (req,res) =>{
   //  console.log(req)
     res.send("aratiiii chaprii nibiii")
@@ -28,7 +31,7 @@ app.get('/', (req,res) =>{
 })
 
 
-
+app.use('/users', user_routes )
 app.use('/books', books_routes )
 
 
