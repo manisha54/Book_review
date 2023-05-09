@@ -5,10 +5,13 @@ const bookController = require('../controllers/book_controller')
 
 const reviewController = require('../controllers/review_controller')
 
+//only admin can able to post/create book
+const { verifyAdmin } = require('../middlewares/auth')
+
 
 router.route('/')
     .get(bookController.getAllBooks)
-    .post(bookController.createBook)
+    .post(verifyAdmin,bookController.createBook)
 
     .put((req,res) =>{
         res.status(405).json({error: "PUT request is not allowed"})

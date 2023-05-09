@@ -43,7 +43,7 @@ const bookScheme = new mongoose.Schema({
 
 
 
-//remore unnessary thing
+//remove unnessary thing
 bookScheme.set('toJSON',{
     transform: (document, returnedDocument) =>{
         returnedDocument.id = document._id.toString()

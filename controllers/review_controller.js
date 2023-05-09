@@ -19,7 +19,8 @@ const createReview = (req,res,next)=>{
     .then((book) => {
         if (!book) return res.status(404).json({error: " book not found"})   
         const review={
-            text:req.body.text
+            text: req.body.text,
+            user: req.user.id
         }
         book.reviews.push(review)
         book.save()
@@ -70,7 +71,9 @@ const UpdateAReview =   (req,res,next) =>{
             if (!book) return res.status(404).json({error: " book not found"})   
         book.reviews = book.reviews.map((r) =>{
             if (r.id === req.params.review_id){
+                if(r.user === req.user.id) {      //come from middleware user id   
                 r.text = req.body.text
+                }
             }
             return r
 
