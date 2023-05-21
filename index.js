@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const books_routes = require('./routes/book-routes')
 const user_routes  =require('./routes/user_routes')
 const {verifyUser} = require('./middlewares/auth')
+const upload = require('./middlewares/upload')
 
 
 
@@ -24,6 +25,8 @@ const app = express()  //initiate  express by giving name app
 
 app.use(express.json())   //request pass through this
 
+app.use(express.static('public'))  //for see image by image path   ---upload/path of image
+
 
 
 
@@ -36,8 +39,13 @@ app.get('/', (req,res) =>{
 
 
 app.use('/users', user_routes )
-app.use(verifyUser)            //call middleware
+//app.use(verifyUser)            //call middleware
 app.use('/books', books_routes )
+
+app.post('/upload', upload.single('photo'), (req, res, next)=>{
+  res.json(req.file)
+
+})
 
 
 //error handling middleware

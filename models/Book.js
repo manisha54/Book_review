@@ -37,7 +37,10 @@ const bookScheme = new mongoose.Schema({
         type: String,
         default : 'Anonymous'
     },
-    reviews: [reviewScheme]    //use array because of many reviews(list of books)
+    reviews: [reviewScheme],    //use array because of many reviews(list of books)
+    photo:{
+        type:String
+    }
 
 }, { timestamps: true})
 

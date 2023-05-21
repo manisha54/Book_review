@@ -93,7 +93,8 @@ const deleteAReview = (req,res,next) =>{
     .then((book) => {
             if (!book) return res.status(404).json({error: " book not found"})   
         book.reviews = book.reviews.filter((r)=>{
-            return r.id !== req.params.review_id
+            return( r.id !== req.params.review_id
+            && r.user !== req.user.id)
         })  
         book.save()
             .then(book => res.status(204).end())
